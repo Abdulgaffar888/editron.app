@@ -3,838 +3,822 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editron - Professional Video Editing Platform</title>
+    <title>Editron - Video Editing Platform</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Landing Page -->
-    <section id="landing-page" class="landing-page">
-        <h1 class="logo">Editron</h1>
-        <p class="tagline">The ultimate platform connecting video editors with clients. Showcase your skills or find the perfect editor for your project.</p>
-        
-        <div class="login-options">
-            <div class="login-box editor-box" onclick="showEditorLogin()">
-                <div class="login-icon">
-                    <i class="fas fa-user-edit"></i>
-                </div>
-                <h3 class="login-title">Editor Login</h3>
-                <p class="login-desc">Access your editor dashboard to showcase your work, manage projects, and earn money.</p>
+    <!-- Unified Login Page -->
+    <section id="login-page" class="login-page">
+        <div class="login-container">
+            <div class="login-header">
+                <h1 class="logo">Editron</h1>
+                <p class="tagline">Connect with video editors and clients worldwide</p>
             </div>
             
-            <div class="login-box customer-box" onclick="showCustomerLogin()">
-                <div class="login-icon">
-                    <i class="fas fa-video"></i>
-                </div>
-                <h3 class="login-title">Customer Login</h3>
-                <p class="login-desc">Find the perfect video editor for your project from our talented pool of professionals.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Editor Login Form -->
-    <section id="editor-login" class="login-form-container hidden">
-        <div class="login-form">
-            <div class="form-header">
-                <div class="form-logo">Editron</div>
-                <h2 class="form-title">Editor Login</h2>
-                <p class="form-subtitle">Access your editor account</p>
-            </div>
-            
-            <form id="editor-login-form">
-                <div class="form-group">
-                    <label class="form-label" for="editor-name">Full Name</label>
-                    <input type="text" id="editor-name" class="form-input" placeholder="Enter your full name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="editor-email">Email Address</label>
-                    <input type="email" id="editor-email" class="form-input" placeholder="Enter your email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="editor-phone">Mobile Number</label>
-                    <input type="tel" id="editor-phone" class="form-input" placeholder="Enter your mobile number" required>
-                </div>
-                
-                <div class="form-group otp-container" id="editor-otp-container">
-                    <label class="form-label">Enter OTP</label>
-                    <div class="otp-inputs">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'editor')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'editor')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'editor')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'editor')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'editor')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'editor')">
+            <div class="login-form">
+                <h2>Welcome Back</h2>
+                <form id="unified-login-form">
+                    <div class="form-group">
+                        <input type="email" id="email" class="form-input" placeholder="Email Address" required>
                     </div>
-                    <div class="otp-timer" id="editor-otp-timer">OTP will expire in 02:00</div>
-                    <div class="resend-otp" id="editor-resend-otp" onclick="resendOTP('editor')">Resend OTP</div>
-                </div>
-                
-                <button type="button" class="btn btn-primary" id="editor-login-btn" onclick="sendOTP('editor')">Send OTP</button>
-                <button type="button" class="btn btn-primary hidden" id="editor-verify-btn" onclick="verifyOTP('editor')">Login</button>
-            </form>
-            
-            <div class="back-to-home">
-                <a href="#" class="back-link" onclick="backToHome()"><i class="fas fa-arrow-left"></i> Back to Home</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Customer Login Form -->
-    <section id="customer-login" class="login-form-container hidden">
-        <div class="login-form">
-            <div class="form-header">
-                <div class="form-logo">Editron</div>
-                <h2 class="form-title">Customer Login</h2>
-                <p class="form-subtitle">Access your customer account</p>
-            </div>
-            
-            <form id="customer-login-form">
-                <div class="form-group">
-                    <label class="form-label" for="customer-name">Full Name</label>
-                    <input type="text" id="customer-name" class="form-input" placeholder="Enter your full name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="customer-email">Email Address</label>
-                    <input type="email" id="customer-email" class="form-input" placeholder="Enter your email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="customer-phone">Mobile Number</label>
-                    <input type="tel" id="customer-phone" class="form-input" placeholder="Enter your mobile number" required>
-                </div>
-                
-                <div class="form-group otp-container" id="customer-otp-container">
-                    <label class="form-label">Enter OTP</label>
-                    <div class="otp-inputs">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'customer')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'customer')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'customer')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'customer')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'customer')">
-                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 'customer')">
+                    
+                    <div class="form-group">
+                        <input type="password" id="password" class="form-input" placeholder="Password" required>
                     </div>
-                    <div class="otp-timer" id="customer-otp-timer">OTP will expire in 02:00</div>
-                    <div class="resend-otp" id="customer-resend-otp" onclick="resendOTP('customer')">Resend OTP</div>
+                    
+                    <button type="button" class="btn btn-primary" onclick="login()">Sign In</button>
+                </form>
+                
+                <div class="login-divider">
+                    <span>or</span>
                 </div>
                 
-                <button type="button" class="btn btn-secondary" id="customer-login-btn" onclick="sendOTP('customer')">Send OTP</button>
-                <button type="button" class="btn btn-secondary hidden" id="customer-verify-btn" onclick="verifyOTP('customer')">Login</button>
-            </form>
-            
-            <div class="back-to-home">
-                <a href="#" class="back-link" onclick="backToHome()"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                <button class="btn btn-secondary" onclick="openSignup()">Create Account</button>
+                
+                <div class="login-footer">
+                    <p>By continuing, you agree to our <a href="terms.html" target="_blank">Terms</a> and <a href="terms.html" target="_blank">Privacy Policy</a></p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Editor Dashboard -->
-    <section id="editor-dashboard" class="hidden">
+    <!-- Signup Modal (front-end only) -->
+<div id="signup-modal" class="modal hidden" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Create an Account</h2>
+      <button class="modal-close" onclick="closeSignup()"><i class="fas fa-times"></i></button>
+    </div>
+    <form id="signup-form" class="project-form" onsubmit="event.preventDefault(); signupSubmit();">
+      <div class="form-group">
+        <label for="signup-name">Full Name</label>
+        <input id="signup-name" class="form-input" type="text" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-email">Email</label>
+        <input id="signup-email" class="form-input" type="email" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-password">Password</label>
+        <input id="signup-password" class="form-input" type="password" required>
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <div style="display:flex;gap:10px;">
+          <label><input type="radio" name="signup-role" value="client" checked> Client</label>
+          <label><input type="radio" name="signup-role" value="editor"> Editor</label>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline" onclick="closeSignup()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Account</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+    <!-- Main App -->
+    <section id="main-app" class="hidden">
+        <!-- Header -->
         <header class="header">
-            <div class="container">
-                <div class="header-content">
-                    <div class="app-name">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Profile" class="profile-pic">
-                        <span>Editron</span>
-                    </div>
-                    
-                    <div class="hamburger" onclick="toggleSidebar()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search for projects, clients...">
-                    </div>
-                    
-                    <div class="user-menu">
-                        <div class="user-avatar" onclick="toggleDropdown()">
-                            <span>JS</span>
-                        </div>
-                        <div class="dropdown-menu" id="dropdownMenu">
-                            <div class="dropdown-item">
-                                <i class="fas fa-user"></i>
-                                <span>John Smith</span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>john@example.com</span>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-edit"></i>
-                                <span>Edit Profile</span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-cog"></i>
-                                <span>Settings</span>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span>Logout</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="header-content">
+                <div class="app-name">
+                    <span>Editron</span>
                 </div>
-            </div>
-        </header>
-        
-        <div class="main-layout">
-            <aside class="sidebar" id="sidebar">
-                <ul class="sidebar-menu">
-                    <li class="menu-item active" onclick="showPage('editor-dashboard-page')">
+                
+                <nav class="main-nav">
+                    <a href="#dashboard" class="nav-item active" onclick="showPage('dashboard')">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('editor-projects')">
-                        <i class="fas fa-project-diagram"></i>
-                        <span>Projects</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('editor-completed')">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Completed Projects</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('editor-earnings')">
-                        <i class="fas fa-dollar-sign"></i>
-                        <span>Total Earnings</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('editor-reviews')">
-                        <i class="fas fa-star"></i>
-                        <span>Reviews</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('editor-settings')">
-                        <i class="fas fa-cog"></i>
-                        <span>Settings</span>
-                    </li>
-                </ul>
-            </aside>
-            
-            <main class="content">
-                <!-- Editor Dashboard Page -->
-                <div id="editor-dashboard-page" class="page-content active">
-                    <h2 class="page-title">Editor Dashboard</h2>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value">12</div>
-                            <div class="stat-label">Active Projects</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">$2,450</div>
-                            <div class="stat-label">Pending Earnings</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">47</div>
-                            <div class="stat-label">Completed Projects</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">4.8</div>
-                            <div class="stat-label">Average Rating</div>
-                        </div>
-                    </div>
-                    
-                    <section class="hero">
-                        <h1>Welcome back, John!</h1>
-                        <p>You have 12 active projects and $2,450 in pending earnings. Continue delivering excellent work to grow your reputation.</p>
-                        <button class="btn">Upload New Work</button>
-                    </section>
-                    
-                    <div class="section-header">
-                        <h2 class="section-title">Your Portfolio</h2>
-                        <button class="btn btn-primary">Add New Project</button>
-                    </div>
-                    
-                    <div class="portfolio-grid">
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Project 1" class="portfolio-img">
-                            <div class="portfolio-content">
-                                <h3 class="portfolio-title">Corporate Brand Video</h3>
-                                <p class="portfolio-desc">A professional brand video for a tech startup, showcasing their product and company culture.</p>
-                                <div class="portfolio-meta">
-                                    <span class="portfolio-level level-professional">Professional</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Project 2" class="portfolio-img">
-                            <div class="portfolio-content">
-                                <h3 class="portfolio-title">Music Video</h3>
-                                <p class="portfolio-desc">Creative music video for an indie artist with dynamic editing and visual effects.</p>
-                                <div class="portfolio-meta">
-                                    <span class="portfolio-level level-professional">Professional</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1128&q=80" alt="Project 3" class="portfolio-img">
-                            <div class="portfolio-content">
-                                <h3 class="portfolio-title">Travel Vlog</h3>
-                                <p class="portfolio-desc">Edited a 15-minute travel vlog with color grading, transitions, and sound design.</p>
-                                <div class="portfolio-meta">
-                                    <span class="portfolio-level level-medium">Medium</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Other Editor Pages -->
-                <div id="editor-projects" class="page-content">
-                    <h2 class="page-title">Active Projects</h2>
-                    <p>You have 12 active projects. Manage your ongoing work here.</p>
-                </div>
-                
-                <div id="editor-completed" class="page-content">
-                    <h2 class="page-title">Completed Projects</h2>
-                    <p>View your 47 completed projects and client feedback.</p>
-                </div>
-                
-                <div id="editor-earnings" class="page-content">
-                    <h2 class="page-title">Earnings Overview</h2>
-                    <p>Track your earnings, payments, and financial statistics.</p>
-                </div>
-                
-                <div id="editor-reviews" class="page-content">
-                    <h2 class="page-title">Client Reviews</h2>
-                    <p>Read feedback from your clients and manage your reputation.</p>
-                </div>
-                
-                <div id="editor-settings" class="page-content">
-                    <h2 class="page-title">Account Settings</h2>
-                    
-                    <div class="settings-container">
-                        <!-- Profile Settings -->
-                        <div class="settings-section">
-                            <div class="settings-header">
-                                <i class="fas fa-user-circle"></i>
-                                <h3>Profile Information</h3>
-                            </div>
-                            <div class="settings-content">
-                                <div class="profile-preview">
-                                    <div class="profile-image-container">
-                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Profile" class="profile-image-large">
-                                        <button class="btn-change-image"><i class="fas fa-camera"></i> Change</button>
-                                    </div>
-                                    <div class="profile-info">
-                                        <h4>John Smith</h4>
-                                        <p>Professional Video Editor</p>
-                                        <div class="rating">
-                                            <span class="stars">★★★★★</span>
-                                            <span class="rating-text">4.8 (128 reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Full Name</label>
-                                        <input type="text" class="form-input" value="John Smith">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Professional Title</label>
-                                        <input type="text" class="form-input" value="Professional Video Editor">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Email Address</label>
-                                        <input type="email" class="form-input" value="john.smith@example.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-input" value="+1 (555) 123-4567">
-                                    </div>
-                                    <div class="form-group full-width">
-                                        <label class="form-label">Bio</label>
-                                        <textarea class="form-input" rows="4">Experienced video editor with 5+ years in the industry. Specializing in corporate videos, music videos, and social media content. Let's bring your vision to life!</textarea>
-                                    </div>
-                                </div>
-                                
-                                <div class="settings-actions">
-                                    <button class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
-                                    <button class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Account Security -->
-                        <div class="settings-section">
-                            <div class="settings-header">
-                                <i class="fas fa-shield-alt"></i>
-                                <h3>Account Security</h3>
-                            </div>
-                            <div class="settings-content">
-                                <div class="security-item">
-                                    <div class="security-info">
-                                        <h4>Password</h4>
-                                        <p>Last changed 3 months ago</p>
-                                    </div>
-                                    <button class="btn btn-secondary">Change Password</button>
-                                </div>
-                                
-                                <div class="security-item">
-                                    <div class="security-info">
-                                        <h4>Two-Factor Authentication</h4>
-                                        <p>Add an extra layer of security to your account</p>
-                                    </div>
-                                    <div class="toggle-container">
-                                        <label class="toggle">
-                                            <input type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <div class="security-item">
-                                    <div class="security-info">
-                                        <h4>Login Activity</h4>
-                                        <p>View your recent account activity</p>
-                                    </div>
-                                    <button class="btn btn-outline">View Activity</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Notification Settings -->
-                        <div class="settings-section">
-                            <div class="settings-header">
-                                <i class="fas fa-bell"></i>
-                                <h3>Notification Preferences</h3>
-                            </div>
-                            <div class="settings-content">
-                                <div class="notification-item">
-                                    <div class="notification-info">
-                                        <h4>Project Notifications</h4>
-                                        <p>Get notified about new projects and updates</p>
-                                    </div>
-                                    <div class="toggle-container">
-                                        <label class="toggle">
-                                            <input type="checkbox" checked>
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <div class="notification-item">
-                                    <div class="notification-info">
-                                        <h4>Message Notifications</h4>
-                                        <p>Receive alerts for new messages</p>
-                                    </div>
-                                    <div class="toggle-container">
-                                        <label class="toggle">
-                                            <input type="checkbox" checked>
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <div class="notification-item">
-                                    <div class="notification-info">
-                                        <h4>Payment Notifications</h4>
-                                        <p>Get updates about payments and earnings</p>
-                                    </div>
-                                    <div class="toggle-container">
-                                        <label class="toggle">
-                                            <input type="checkbox" checked>
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <div class="notification-item">
-                                    <div class="notification-info">
-                                        <h4>Marketing Emails</h4>
-                                        <p>Receive tips, promotions, and platform updates</p>
-                                    </div>
-                                    <div class="toggle-container">
-                                        <label class="toggle">
-                                            <input type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Payment & Payout -->
-                        <div class="settings-section">
-                            <div class="settings-header">
-                                <i class="fas fa-credit-card"></i>
-                                <h3>Payment & Payout Methods</h3>
-                            </div>
-                            <div class="settings-content">
-                                <div class="payment-methods">
-                                    <div class="payment-method active">
-                                        <div class="payment-icon">
-                                            <i class="fab fa-paypal"></i>
-                                        </div>
-                                        <div class="payment-info">
-                                            <h4>PayPal</h4>
-                                            <p>john.smith@example.com</p>
-                                        </div>
-                                        <div class="payment-actions">
-                                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
-                                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="payment-method">
-                                        <div class="payment-icon">
-                                            <i class="fas fa-university"></i>
-                                        </div>
-                                        <div class="payment-info">
-                                            <h4>Bank Transfer</h4>
-                                            <p>**** 4567</p>
-                                        </div>
-                                        <div class="payment-actions">
-                                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
-                                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="btn btn-secondary"><i class="fas fa-plus"></i> Add Payment Method</button>
-                                
-                                <div class="payout-settings">
-                                    <h4>Payout Schedule</h4>
-                                    <div class="form-group">
-                                        <label class="form-label">Payout Frequency</label>
-                                        <select class="form-input">
-                                            <option>Weekly</option>
-                                            <option selected>Bi-weekly</option>
-                                            <option>Monthly</option>
-                                            <option>Manual</option>
-                                        </select>
-                                    </div>
-                                    <p class="help-text">Funds will be automatically transferred to your selected payment method based on this schedule.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Privacy Settings -->
-                        <div class="settings-section">
-                            <div class="settings-header">
-                                <i class="fas fa-lock"></i>
-                                <h3>Privacy & Visibility</h3>
-                            </div>
-                            <div class="settings-content">
-                                <div class="privacy-item">
-                                    <div class="privacy-info">
-                                        <h4>Profile Visibility</h4>
-                                        <p>Control who can see your profile and portfolio</p>
-                                    </div>
-                                    <select class="form-input">
-                                        <option selected>Public</option>
-                                        <option>Only Registered Users</option>
-                                        <option>Private</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="privacy-item">
-                                    <div class="privacy-info">
-                                        <h4>Online Status</h4>
-                                        <p>Show when you're available for new projects</p>
-                                    </div>
-                                    <div class="toggle-container">
-                                        <label class="toggle">
-                                            <input type="checkbox" checked>
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <div class="privacy-item">
-                                    <div class="privacy-info">
-                                        <h4>Data Sharing</h4>
-                                        <p>Allow usage data to improve platform experience</p>
-                                    </div>
-                                    <div class="toggle-container">
-                                        <label class="toggle">
-                                            <input type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Account Actions -->
-                        <div class="settings-section danger-zone">
-                            <div class="settings-header">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <h3>Account Actions</h3>
-                            </div>
-                            <div class="settings-content">
-                                <div class="danger-item">
-                                    <div class="danger-info">
-                                        <h4>Download Your Data</h4>
-                                        <p>Request a copy of all your personal data on Editron</p>
-                                    </div>
-                                    <button class="btn btn-outline">Request Data</button>
-                                </div>
-                                
-                                <div class="danger-item">
-                                    <div class="danger-info">
-                                        <h4>Deactivate Account</h4>
-                                        <p>Temporarily disable your account. You can reactivate it anytime.</p>
-                                    </div>
-                                    <button class="btn btn-warning">Deactivate</button>
-                                </div>
-                                
-                                <div class="danger-item">
-                                    <div class="danger-info">
-                                        <h4>Delete Account</h4>
-                                        <p>Permanently delete your account and all associated data. This action cannot be undone.</p>
-                                    </div>
-                                    <button class="btn btn-danger">Delete Account</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </section>
-
-    <!-- Customer Dashboard -->
-    <section id="customer-dashboard" class="hidden">
-        <header class="header">
-            <div class="container">
-                <div class="header-content">
-                    <div class="app-name">
-                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Profile" class="profile-pic">
-                        <span>Editron</span>
-                    </div>
-                    
-                    <div class="hamburger" onclick="toggleSidebar()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search for editors, skills...">
-                    </div>
-                    
-                    <div class="user-menu">
-                        <div class="user-avatar" onclick="toggleDropdown()">
-                            <span>AS</span>
-                        </div>
-                        <div class="dropdown-menu" id="dropdownMenuCustomer">
-                            <div class="dropdown-item">
-                                <i class="fas fa-user"></i>
-                                <span>Alex Johnson</span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>alex@example.com</span>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-edit"></i>
-                                <span>Edit Profile</span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-cog"></i>
-                                <span>Settings</span>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span>Logout</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        
-        <div class="main-layout">
-            <aside class="sidebar" id="customer-sidebar">
-                <ul class="sidebar-menu">
-                    <li class="menu-item active" onclick="showPage('customer-dashboard-page')">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('customer-find-editors')">
+                    </a>
+                    <a href="#discover" class="nav-item" onclick="showPage('discover')">
                         <i class="fas fa-search"></i>
-                        <span>Find Editors</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('customer-projects')">
-                        <i class="fas fa-project-diagram"></i>
-                        <span>My Projects</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('customer-favorites')">
-                        <i class="fas fa-heart"></i>
-                        <span>Favorites</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('customer-messages')">
+                        <span>Discover</span>
+                    </a>
+                    <a href="#messages" class="nav-item" onclick="showPage('messages')">
                         <i class="fas fa-comments"></i>
                         <span>Messages</span>
-                    </li>
-                    <li class="menu-item" onclick="showPage('customer-settings')">
-                        <i class="fas fa-cog"></i>
-                        <span>Settings</span>
-                    </li>
-                </ul>
-            </aside>
-            
-            <main class="content">
-                <!-- Customer Dashboard Page -->
-                <div id="customer-dashboard-page" class="page-content active">
-                    <section class="hero">
-                        <h1>Find the Perfect Video Editor</h1>
-                        <p>Browse through our talented pool of editors, filter by skill level and budget, and get your project completed professionally.</p>
-                        <button class="btn">Post a Project</button>
-                    </section>
-                    
-                    <div class="filters">
-                        <h3 class="filter-title">Filter Editors</h3>
-                        <div class="filter-options">
-                            <div class="filter-option active">All</div>
-                            <div class="filter-option">Beginner</div>
-                            <div class="filter-option">Medium</div>
-                            <div class="filter-option">Professional</div>
-                        </div>
+                    </a>
+                    <a href="#profile" class="nav-item" onclick="showPage('profile')">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </nav>
+                
+                <div class="user-menu">
+                    <div class="user-avatar" onclick="toggleDropdown()">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" alt="Profile">
                     </div>
-                    
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="#profile" class="dropdown-item" onclick="showPage('profile')">
+                            <i class="fas fa-user"></i>
+                            <span>My Profile</span>
+                        </a>
+                        <a href="#settings" class="dropdown-item" onclick="showPage('settings')">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <section id="dashboard" class="page active">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's your current activity.</p>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions" id="quick-actions">
+                    <!-- Dynamic content will be loaded based on role -->
+                </div>
+
+                <!-- Active Projects -->
+                <div class="section">
                     <div class="section-header">
-                        <h2 class="section-title">Available Editors</h2>
+                        <h2>Active Projects</h2>
                     </div>
-                    
-                    <div class="portfolio-grid">
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Editor 1" class="portfolio-img">
-                            <div class="portfolio-content">
-                                <h3 class="portfolio-title">Michael Chen</h3>
-                                <p class="portfolio-desc">Specializes in corporate videos and commercials with 5 years of experience.</p>
-                                <div class="portfolio-meta">
-                                    <span class="portfolio-level level-professional">Professional</span>
-                                </div>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Corporate Brand Video</h3>
+                                <span class="project-status active">Active</span>
+                            </div>
+                            <p>Editing a 2-minute brand video for tech startup</p>
+                            <div class="project-meta">
+                                <span class="budget">$800</span>
+                                <span class="deadline">Due: Dec 15</span>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn btn-sm" onclick="showProjectDetails('project1')">View Details</button>
+                                <button class="btn btn-sm btn-outline" onclick="showPage('messages')">Message</button>
                             </div>
                         </div>
-                        
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Editor 2" class="portfolio-img">
-                            <div class="portfolio-content">
-                                <h3 class="portfolio-title">Sarah Williams</h3>
-                                <p class="portfolio-desc">Creative music video and documentary editor with a unique artistic style.</p>
-                                <div class="portfolio-meta">
-                                    <span class="portfolio-level level-medium">Medium</span>
-                                </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Social Media Ads</h3>
+                                <span class="project-status active">Active</span>
                             </div>
-                        </div>
-                        
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Editor 3" class="portfolio-img">
-                            <div class="portfolio-content">
-                                <h3 class="portfolio-title">David Rodriguez</h3>
-                                <p class="portfolio-desc">Expert in vlog editing and social media content with fast turnaround times.</p>
-                                <div class="portfolio-meta">
-                                    <span class="portfolio-level level-beginner">Beginner</span>
-                                </div>
+                            <p>Create 3 short ads for Instagram and TikTok</p>
+                            <div class="project-meta">
+                                <span class="budget">$450</span>
+                                <span class="deadline">Due: Dec 20</span>
                             </div>
-                        </div>
-                        
-                        <div class="portfolio-item">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Editor 4" class="portfolio-img">
-                            <div class="portfolio-content">
-                                <h3 class="portfolio-title">Emma Thompson</h3>
-                                <p class="portfolio-desc">Award-winning film editor with expertise in narrative storytelling.</p>
-                                <div class="portfolio-meta">
-                                    <span class="portfolio-level level-professional">Professional</span>
-                                </div>
+                            <div class="project-actions">
+                                <button class="btn btn-sm" onclick="showProjectDetails('project2')">View Details</button>
+                                <button class="btn btn-sm btn-outline" onclick="showPage('messages')">Message</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Other Customer Pages -->
-                <div id="customer-find-editors" class="page-content">
-                    <h2 class="page-title">Find Editors</h2>
-                    <p>Browse and search for video editors based on your project requirements.</p>
+
+                <!-- Recent Activity -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Recent Activity</h2>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p>New message from <strong>Sarah Johnson</strong></p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p>Project <strong>Music Video Edit</strong> completed</p>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div id="customer-projects" class="page-content">
-                    <h2 class="page-title">My Projects</h2>
-                    <p>Manage your ongoing and completed video editing projects.</p>
+            </section>
+
+            <!-- Discover Page -->
+            <section id="discover" class="page">
+                <div class="page-header">
+                    <h1>Discover</h1>
+                    <p>Find projects to work on or editors to hire</p>
                 </div>
-                
-                <div id="customer-favorites" class="page-content">
-                    <h2 class="page-title">Favorites</h2>
-                    <p>View your favorite editors and saved projects.</p>
+
+                <!-- Discovery Tabs -->
+                <div class="discovery-tabs">
+                    <button class="tab-btn active" onclick="switchDiscoveryTab('projects')">
+                        <i class="fas fa-tasks"></i>
+                        Projects
+                    </button>
+                    <button class="tab-btn" onclick="switchDiscoveryTab('editors')">
+                        <i class="fas fa-users"></i>
+                        Editors
+                    </button>
                 </div>
-                
-                <div id="customer-messages" class="page-content">
-                    <h2 class="page-title">Messages</h2>
-                    <p>Communicate with editors about your projects.</p>
+
+                <!-- Projects Tab -->
+                <div id="projects-tab" class="tab-content active">
+                    <div class="filters">
+                        <div class="filter-group">
+                            <select class="filter-select" id="project-category">
+                                <option>All Categories</option>
+                                <option>Corporate</option>
+                                <option>Social Media</option>
+                                <option>Music Video</option>
+                                <option>Documentary</option>
+                            </select>
+                            <select class="filter-select" id="project-budget">
+                                <option>Any Budget</option>
+                                <option>Under $500</option>
+                                <option>$500 - $1000</option>
+                                <option>$1000+</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="projects-list" id="projects-list">
+                        <div class="project-listing" data-category="Animation" data-budget="300">
+                            <div class="listing-header">
+                                <h3>YouTube Channel Intro</h3>
+                                <span class="budget">$300</span>
+                            </div>
+                            <p class="listing-description">Need a 15-second animated intro for my tech YouTube channel. Looking for modern, clean design.</p>
+                            <div class="listing-meta">
+                                <span class="category">Animation</span>
+                                <span class="deadline">Due: Dec 18</span>
+                                <span class="proposals">12 proposals</span>
+                            </div>
+                            <div class="listing-actions">
+                                <button class="btn btn-primary" onclick="showPaymentModal(300, 'project_yt_intro')">Apply</button>
+                                <button class="btn btn-outline">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="project-listing" data-category="Real Estate" data-budget="750">
+                            <div class="listing-header">
+                                <h3>Real Estate Video Tour</h3>
+                                <span class="budget">$750</span>
+                            </div>
+                            <p class="listing-description">Edit 30-minute property footage into a 3-minute engaging tour video with background music.</p>
+                            <div class="listing-meta">
+                                <span class="category">Real Estate</span>
+                                <span class="deadline">Due: Dec 22</span>
+                                <span class="proposals">8 proposals</span>
+                            </div>
+                            <div class="listing-actions">
+                                <button class="btn btn-primary" onclick="showPaymentModal(750, 'project_real_estate')">Apply</button>
+                                <button class="btn btn-outline">Save</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div id="customer-settings" class="page-content">
-                    <h2 class="page-title">Account Settings</h2>
-                    <p>Manage your profile, preferences, and notification settings.</p>
+
+                <!-- Editors Tab -->
+                <div id="editors-tab" class="tab-content">
+                    <div class="filters">
+                        <div class="filter-group">
+                            <select class="filter-select" id="editor-skill">
+                                <option>All Skills</option>
+                                <option>Animation</option>
+                                <option>Color Grading</option>
+                                <option>Motion Graphics</option>
+                                <option>VFX</option>
+                                <option>Corporate</option>
+                                <option>Music Video</option>
+                            </select>
+                            <select class="filter-select" id="editor-rating">
+                                <option>Any Rating</option>
+                                <option>4+ Stars</option>
+                                <option>4.5+ Stars</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="editors-grid" id="editors-grid">
+                        <div class="editor-card" data-skills="Corporate,Commercial,Color Grading,Animation" data-rating="4.8">
+                            <div class="editor-header">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" alt="Michael Chen" class="editor-avatar">
+                                <div class="editor-info">
+                                    <h3>Michael Chen</h3>
+                                    <div class="rating">
+                                        <span class="stars">★★★★★</span>
+                                        <span class="rating-text">4.8 (47 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="editor-bio">Specializes in corporate videos and commercials. Fast turnaround with professional quality.</p>
+                            <div class="editor-skills">
+                                <span class="skill-tag">Corporate</span>
+                                <span class="skill-tag">Commercial</span>
+                                <span class="skill-tag">Color Grading</span>
+                                <span class="skill-tag">Animation</span>
+                            </div>
+                            <div class="editor-actions">
+                                <button class="btn btn-primary" onclick="showPaymentModal(500, 'editor_michael')">Hire</button>
+                                <button class="btn btn-outline">Message</button>
+                            </div>
+                        </div>
+
+                        <div class="editor-card" data-skills="Music Video,Documentary,Creative,Motion Graphics" data-rating="4.9">
+                            <div class="editor-header">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" alt="Sarah Williams" class="editor-avatar">
+                                <div class="editor-info">
+                                    <h3>Sarah Williams</h3>
+                                    <div class="rating">
+                                        <span class="stars">★★★★★</span>
+                                        <span class="rating-text">4.9 (32 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="editor-bio">Creative music video and documentary editor with unique artistic style and attention to detail.</p>
+                            <div class="editor-skills">
+                                <span class="skill-tag">Music Video</span>
+                                <span class="skill-tag">Documentary</span>
+                                <span class="skill-tag">Creative</span>
+                                <span class="skill-tag">Motion Graphics</span>
+                            </div>
+                            <div class="editor-actions">
+                                <button class="btn btn-primary" onclick="showPaymentModal(600, 'editor_sarah')">Hire</button>
+                                <button class="btn btn-outline">Message</button>
+                            </div>
+                        </div>
+
+                        <div class="editor-card" data-skills="VFX,Animation,Color Grading" data-rating="4.2">
+                            <div class="editor-header">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" alt="Emma Thompson" class="editor-avatar">
+                                <div class="editor-info">
+                                    <h3>Emma Thompson</h3>
+                                    <div class="rating">
+                                        <span class="stars">★★★★☆</span>
+                                        <span class="rating-text">4.2 (28 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="editor-bio">Award-winning film editor with expertise in narrative storytelling and VFX.</p>
+                            <div class="editor-skills">
+                                <span class="skill-tag">VFX</span>
+                                <span class="skill-tag">Animation</span>
+                                <span class="skill-tag">Color Grading</span>
+                            </div>
+                            <div class="editor-actions">
+                                <button class="btn btn-primary" onclick="showPaymentModal(450, 'editor_emma')">Hire</button>
+                                <button class="btn btn-outline">Message</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </main>
+            </section>
+
+            <!-- Project Timeline Page
+            <section id="timeline" class="page">
+                <div class="page-header">
+                    <h1>Project Timeline</h1>
+                    <p>Track your project progress and milestones</p>
+                </div>
+
+                <div class="timeline-container">
+                    <div class="timeline-filters">
+                        <div class="filter-group">
+                            <select class="filter-select" id="timeline-status">
+                                <option value="all">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="completed">Completed</option>
+                                <option value="pending">Pending</option>
+                            </select>
+                            <input type="text" class="form-input" id="timeline-search" placeholder="Search projects...">
+                        </div>
+                    </div>
+
+                    <div class="timeline-projects" id="timeline-projects">
+                        <!-- Dynamic timeline content -->
+                    <!-- </div>
+                </div>
+            </section> --> -->
+
+            <!-- Messages Page -->
+            <section id="messages" class="page">
+                <div class="page-header">
+                    <h1>Messages</h1>
+                    <p>Communicate with your clients and editors</p>
+                </div>
+
+                <div class="messages-container">
+                    <div class="conversations-list">
+                        <div class="conversation active">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&h=50&q=80" alt="Sarah Johnson" class="conversation-avatar">
+                            <div class="conversation-info">
+                                <h4>Sarah Johnson</h4>
+                                <p class="last-message">Can we add more transitions to the...</p>
+                                <span class="message-time">2h ago</span>
+                            </div>
+                        </div>
+                        <div class="conversation">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&h=50&q=80" alt="Mike Chen" class="conversation-avatar">
+                            <div class="conversation-info">
+                                <h4>Mike Chen</h4>
+                                <p class="last-message">The first draft looks great!</p>
+                                <span class="message-time">1d ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-area">
+                        <div class="chat-header">
+                            <div class="chat-partner">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&h=50&q=80" alt="Sarah Johnson" class="chat-avatar">
+                                <div>
+                                    <h4>Sarah Johnson</h4>
+                                    <span class="online-status">Online</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chat-messages">
+                            <div class="message received">
+                                <p>Hi! I really like the first cut. Can we add more transitions between scenes?</p>
+                                <span class="message-time">10:30 AM</span>
+                            </div>
+                            <div class="message sent">
+                                <p>Sure! I can add some smooth transitions. Any specific style you prefer?</p>
+                                <span class="message-time">10:32 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="chat-input">
+                            <input type="text" placeholder="Type your message...">
+                            <button class="btn-attach">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <button class="btn-send">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Page -->
+            <section id="profile" class="page">
+                <div class="page-header">
+                    <h1>My Profile</h1>
+                    <button class="btn btn-outline" onclick="toggleEditMode()">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                </div>
+
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-avatar-container">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Profile" class="profile-avatar" id="profile-avatar">
+                            <button class="btn-change-avatar" onclick="changeProfilePicture()">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="profile-name">John Smith</h2>
+                            <p class="profile-title" id="profile-title">Professional Video Editor</p>
+                            <div class="profile-stats">
+                                <div class="stat">
+                                    <strong>24</strong>
+                                    <span>Projects</span>
+                                </div>
+                                <div class="stat">
+                                    <strong>4.8</strong>
+                                    <span>Rating</span>
+                                </div>
+                                <div class="stat">
+                                    <strong>18</strong>
+                                    <span>Clients</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-content">
+                        <div class="profile-section">
+                            <h3>About Me</h3>
+                            <p id="profile-about">Experienced video editor with 5+ years in the industry. Specializing in corporate videos, music videos, and social media content. Let's bring your vision to life!</p>
+                        </div>
+
+                        <div class="profile-section">
+                            <h3>Skills</h3>
+                            <div class="skills-list" id="profile-skills">
+                                <span class="skill-tag">Adobe Premiere Pro</span>
+                                <span class="skill-tag">After Effects</span>
+                                <span class="skill-tag">Color Grading</span>
+                                <span class="skill-tag">Motion Graphics</span>
+                                <span class="skill-tag">Sound Design</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <h3>Portfolio</h3>
+                            <div class="portfolio-grid">
+                                <div class="portfolio-item">
+                                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=120&q=80" alt="Project 1">
+                                    <div class="portfolio-overlay">
+                                        <h4>Corporate Brand Video</h4>
+                                    </div>
+                                </div>
+                                <div class="portfolio-item">
+                                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=120&q=80" alt="Project 2">
+                                    <div class="portfolio-overlay">
+                                        <h4>Music Video</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Page -->
+            <section id="settings" class="page">
+                <div class="page-header">
+                    <h1>Settings</h1>
+                </div>
+
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h3>Account Settings</h3>
+                        <div class="settings-form" id="account-settings-form">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="settings-name" value="John Smith" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="settings-email" value="john@example.com" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Bio</label>
+                                <textarea class="form-input" id="settings-bio" rows="4">Experienced video editor with 5+ years in the industry...</textarea>
+                            </div>
+                            <button class="btn btn-primary" onclick="saveAccountSettings()">Save Changes</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Security</h3>
+                        <div class="security-options">
+                            <div class="security-item">
+                                <div>
+                                    <h4>Change Password</h4>
+                                    <p>Last changed 3 months ago</p>
+                                </div>
+                                <button class="btn btn-outline" onclick="showChangePassword()">Change</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notifications</h3>
+                        <div class="notification-options">
+                            <div class="notification-item">
+                                <div>
+                                    <h4>Project Notifications</h4>
+                                    <p>Get notified about new projects and updates</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-item">
+                                <div>
+                                    <h4>Message Notifications</h4>
+                                    <p>Receive alerts for new messages</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+                <footer id="app-footer" class="app-footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+            <strong>Editron</strong> — connect with video editors worldwide.
+            </div>
+            <div class="footer-right">
+            <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms</a>
+            <span> · </span>
+            <a href="mailto:support@editron.example">Support</a>
+            <span> · </span>
+            <span>&copy; <span id="footer-year"></span> Editron</span>
+            </div>
         </div>
+</footer>
+
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Editron</h3>
-                    <p>Connecting talented video editors with clients worldwide. Quality work, fair prices, secure transactions.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+    <!-- Create Project Modal -->
+    <div id="create-project-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Post a Project</h2>
+                <button class="modal-close" onclick="closeCreateProject()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="project-form" id="project-form">
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <input type="text" id="project-title" class="form-input" placeholder="e.g., YouTube Channel Intro" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-input" id="project-description" rows="4" placeholder="Describe your project in detail..." required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Budget ($)</label>
+                        <input type="number" id="project-budget" class="form-input" placeholder="500" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Deadline</label>
+                        <input type="date" id="project-deadline" class="form-input" required>
                     </div>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">How It Works</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select class="form-input" id="project-category-select" required>
+                        <option value="">Select a category</option>
+                        <option>Corporate</option>
+                        <option>Social Media</option>
+                        <option>Music Video</option>
+                        <option>Documentary</option>
+                        <option>Animation</option>
+                    </select>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>For Editors</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Become an Editor</a></li>
-                        <li><a href="#">Editor Resources</a></li>
-                        <li><a href="#">Success Stories</a></li>
-                        <li><a href="#">Community Forum</a></li>
-                    </ul>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeCreateProject()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Post Project</button>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> editron22@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> +91 8885371529</li>
-                        <li><i class="fab fa-instagram"></i> editron.in</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Hyderabad, India</li>
-                    </ul>
-                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal hidden">
+        <div class="modal-content payment-modal">
+            <div class="modal-header">
+                <h2>Complete Payment</h2>
+                <button class="modal-close" onclick="closePaymentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; 2023 Editron. All rights reserved. | We charge 5% commission on every successful transaction.</p>
+            <div class="payment-container">
+                <div class="payment-summary">
+                    <h3>Payment Summary</h3>
+                    <div class="payment-details">
+                        <div class="payment-item">
+                            <span>Project Amount</span>
+                            <span id="payment-amount">$0.00</span>
+                        </div>
+                        <div class="payment-item">
+                            <span>Platform Fee (5%)</span>
+                            <span id="platform-fee">$0.00</span>
+                        </div>
+                        <div class="payment-total">
+                            <span>Total Amount</span>
+                            <span id="total-amount">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-methods">
+                    <h3>Select Payment Method</h3>
+                    <div class="payment-options">
+                        <div class="payment-method" onclick="selectPaymentMethod('card')">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Credit/Debit Card</span>
+                        </div>
+                        <div class="payment-method" onclick="selectPaymentMethod('razorpay')">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Razorpay</span>
+                        </div>
+                        <div class="payment-method" onclick="selectPaymentMethod('stripe')">
+                            <i class="fas fa-globe"></i>
+                            <span>Stripe</span>
+                        </div>
+                        <div class="payment-method" onclick="selectPaymentMethod('googlepay')">
+                            <i class="fab fa-google-pay"></i>
+                            <span>Google Pay</span>
+                        </div>
+                    </div>
+
+                    <!-- Card Payment Form -->
+                    <div id="card-payment" class="payment-form hidden">
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="text" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Expiry Date</label>
+                                <input type="text" class="form-input" placeholder="MM/YY" maxlength="5" oninput="formatExpiryDate(this)">
+                            </div>
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <input type="text" class="form-input" placeholder="123" maxlength="3">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Cardholder Name</label>
+                            <input type="text" class="form-input" placeholder="John Smith">
+                        </div>
+                    </div>
+
+                    <!-- Other payment methods will be handled by their respective SDKs -->
+                    <div id="other-payment" class="payment-info hidden">
+                        <p>You will be redirected to complete your payment securely.</p>
+                    </div>
+                </div>
+
+                <div class="payment-actions">
+                    <button class="btn btn-outline" onclick="closePaymentModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="processPayment()">Pay Now</button>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="change-password-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Change Password</h2>
+                <button class="modal-close" onclick="closeChangePassword()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="password-form" id="password-form">
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeChangePassword()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="project-details-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Project Details</h2>
+                <button class="modal-close" onclick="closeProjectDetails()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="project-details" id="project-details-content">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+   <!-- Toast container -->
+<div id="toast-container" aria-live="polite" aria-atomic="true" style="position:fixed;bottom:20px;right:20px;z-index:2000;"></div>
+
 
     <script src="script.js"></script>
 </body>
